@@ -20,18 +20,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def play_rock
-    self.outcome("rock")
-    render({ :template => "game_templates/user_rock.html.erb" })
-  end
-
-  def play_paper
-    self.outcome("paper")
-    render({ :template => "game_templates/user_paper.html.erb" })
-  end
-
-  def play_scissors
-    self.outcome("scissors")
-    render({ :template => "game_templates/user_scissors.html.erb" })
+  def play
+    @user_move = params.fetch("move")
+    self.outcome(@user_move)
+    render({ :template => "game_templates/play.html.erb" })
   end
 end
